@@ -1,0 +1,38 @@
+plugins {
+    id 'org.sonarqube' version '2.6.2'
+    id 'io.franzbecker.gradle-lombok' version '1.11'
+    id 'io.spring.dependency-management' version '1.0.5.RELEASE'
+    id 'org.springframework.boot' version '2.0.3.RELEASE'
+    id 'java'
+}
+
+group 'com.wyatt'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-starter-parent:2.0.3.RELEASE'
+    }
+}
+
+dependencies {
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest'
+    compile group: 'org.springframework.data', name: 'spring-data-mongodb'
+    compile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo'
+}
+
+lombok {
+    version = '1.18.0'
+    sha256 = ''
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
+}
